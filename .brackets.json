@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/home/joerg/__Workspace/xAPI Charts/vendor/nvd3/nv.d3.js",
+        "/home/joerg/__Workspace/xAPI Charts/vendor/nvd3/nv.d3.min.js"
+    ]
+}
