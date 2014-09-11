@@ -1,3 +1,8 @@
+/**
+ * Chart.js global config
+ * @see http://www.chartjs.org/docs/
+ */
+Chart.defaults.global.responsive = true;
 
 /**
  * ADL config
@@ -54,33 +59,36 @@ var callback = function(data) {
          */
 
         // Build bar chart data matrix
-        var barData = ['Verbs'];
-        var xData = ['x'];
+        var barData = {
+            labels: [],
+            datasets: [{
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }]
+        };
         for (var verb in data) {
-            barData.push(
-                data[verb].length
-            );
-            xData.push(/[^\/]+$/.exec(verb)[0]);
+            barData.datasets[0].data.push(data[verb].length);
+            barData.labels.push(/[^\/]+$/.exec(verb)[0]);
         }
-        var chartData = [xData, barData];
 
         // Render chart
-        var chart = c3.generate({
-            bindto: '#BarChart',
-            data: {
-                x: 'x',
-                columns: chartData,
-                type: 'bar',
-            },
-            axis: {
-                x: {
-                    type: 'category',
-                    tick: {
-                        rotate: true
-                    }
-                }
-            }
-        });
+        var ctxBar = document.getElementById('BarChart').getContext('2d');
+        var MyBarChart = new Chart(ctxBar).Bar(barData);
+        
+        /**
+         * Radar chart
+         */
+        
+        // Render chart
+        var radarData = barData;
+        var ctxRadar = document.getElementById('RadarChart').getContext('2d');
+        var MyRadarChart = new Chart(ctxRadar).Radar(barData);
+        
+   
         /**
          * Pie chart
          */
@@ -89,21 +97,25 @@ var callback = function(data) {
         var pieData = [];
 
         for (var verb in data) {
-            pieData.push([
-                /[^\/]+$/.exec(verb)[0],
-                data[verb].length
-            ]);
+            pieData.push({
+                value: data[verb].length,
+                color:'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+                highlight: "#FF5A5E",
+                label: /[^\/]+$/.exec(verb)[0],
+            });
         }
 
-        // Render chart
-        var chart = c3.generate({
-            bindto: '#PieChart',
-            data: {
-                columns: pieData,
-                type: 'pie',
-            }
-        });
-
+        // Render Pie chart
+        var legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>; padding:0 10px;\">&nbsp;</span><%if(segments[i].label){%> <%=segments[i].label%><%}%></li><%}%></ul>";
+        var ctxPie = document.getElementById('PieChart').getContext('2d');
+        var MyPieChart = new Chart(ctxPie).Pie(pieData, {legendTemplate: legendTemplate});
+        // Render Legend
+        document.getElementById('PieChartlegend').innerHTML = MyPieChart.generateLegend();
+                                                         
+        // Render Doughnut
+        var ctxDoughnut = document.getElementById('DoughnutChart').getContext('2d');
+        var MyDoughnutChart = new Chart(ctxDoughnut).Doughnut(pieData);
+        
         /**
          *
          */
