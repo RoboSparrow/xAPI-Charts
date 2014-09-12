@@ -4,6 +4,14 @@
  */
 Chart.defaults.global.responsive = true;
 
+function pastelColors(pastel){
+    pastel = pastel || 127
+    var r = (Math.round(Math.random()* pastel) + pastel).toString(16);
+    var g = (Math.round(Math.random()* pastel) + pastel).toString(16);
+    var b = (Math.round(Math.random()* pastel) + pastel).toString(16);
+    return '#' + r + g + b;
+}
+
 /**
  * ADL config
  */
@@ -99,7 +107,7 @@ var callback = function(data) {
         for (var verb in data) {
             pieData.push({
                 value: data[verb].length,
-                color:'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+                color: pastelColors(150),
                 highlight: "#FF5A5E",
                 label: /[^\/]+$/.exec(verb)[0],
             });
