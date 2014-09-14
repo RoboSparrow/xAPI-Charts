@@ -107,8 +107,8 @@ var callback = function(data) {
         for (var verb in data) {
             pieData.push({
                 value: data[verb].length,
-                color: pastelColors(150),
-                highlight: "#FF5A5E",
+                color: pastelColors(),
+                highlight: "#eeeeee",
                 label: /[^\/]+$/.exec(verb)[0],
             });
         }
