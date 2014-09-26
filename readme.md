@@ -1,4 +1,4 @@
-Simple example of using different charting  libraries with [xAPIWrapper](https://github.com/adlnet/xAPIWrapper)
+Some simple examples of using popular charting libraries with [xAPIWrapper](https://github.com/adlnet/xAPIWrapper)
 
 This project is just a little excercise, not an application. 
 
