@@ -60,7 +60,7 @@ var callback = function(data) {
             barData.push(
                 data[verb].length
             );
-            xData.push(/[^\/]+$/.exec(verb)[0]);
+            xData.push(utils.verb(verb));
         }
         var chartData = [xData, barData];
 
@@ -90,7 +90,7 @@ var callback = function(data) {
 
         for (var verb in data) {
             pieData.push([
-                /[^\/]+$/.exec(verb)[0],
+                utils.verb(verb),
                 data[verb].length
             ]);
         }
@@ -125,7 +125,7 @@ var callback = function(data) {
             table.push('<td>' + statements[i].id + '</td>');
             table.push('<td>' + ((typeof statements[i].actor.mbox !== 'undefined') ? statements[i].actor.mbox.replace(/mailto:/g, '') : '') + '</td>');
             table.push('<td>' + (statements[i].actor.name || '') + '</td>');
-            table.push('<td>' + (/[^\/]+$/.exec(statements[i].verb.id)[0]) + '</td>');
+            table.push('<td>' + (utils.verb(statements[i].verb.id)) + '</td>');
             if (typeof statements[i].authority !== 'undefined') {
                 var authority = 'yes, but cannot identify';
                 authority = (statements[i].authority.name !== 'undefined') ? statements[i].authority.name : authority;

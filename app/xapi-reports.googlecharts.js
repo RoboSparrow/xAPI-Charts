@@ -74,10 +74,10 @@ var callback = function(data) {
 
         for (var verb in data) {
             columData.push([
-                /[^\/]+$/.exec(verb)[0],
+                utils.verb(verb),
                 data[verb].length,
                 'color:' + pastelColors() + ';opacity: 0.8;',
-                /[^\/]+$/.exec(verb)[0]
+                utils.verb(verb)
             ]);
         }
 
@@ -111,7 +111,7 @@ var callback = function(data) {
 
         for (var verb in data) {
             barData.push([
-                /[^\/]+$/.exec(verb)[0],
+                utils.verb(verb),
                 data[verb].length,
                 'color:' + pastelColors() + ';opacity: 0.8;',
                 data[verb].length
@@ -148,7 +148,7 @@ var callback = function(data) {
 
         for (var verb in data) {
             pieData.push([
-                /[^\/]+$/.exec(verb)[0],
+                utils.verb(verb),
                 data[verb].length
             ]);
         }
@@ -178,7 +178,7 @@ var callback = function(data) {
         for (var i = 0; i < statements.length; i++) {
             tableRowData.push([
                 statements[i].id,
-                /[^\/]+$/.exec(statements[i].verb.id)[0],
+                utils.verb(statements[i].verb.id),
                 ((typeof statements[i].actor.mbox !== 'undefined') ? statements[i].actor.mbox.replace(/mailto:/g, '') : '')
             ]);
         }

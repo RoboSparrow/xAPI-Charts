@@ -80,7 +80,7 @@ var callback = function(data) {
         };
         for (var verb in data) {
             barData.datasets[0].data.push(data[verb].length);
-            barData.labels.push(/[^\/]+$/.exec(verb)[0]);
+            barData.labels.push(utils.verb(verb));
         }
 
         // Render chart
@@ -109,7 +109,7 @@ var callback = function(data) {
                 value: data[verb].length,
                 color: pastelColors(),
                 highlight: "#eeeeee",
-                label: /[^\/]+$/.exec(verb)[0],
+                label: utils.verb(verb),
             });
         }
 
@@ -145,7 +145,7 @@ var callback = function(data) {
             table.push('<td>' + statements[i].id + '</td>');
             table.push('<td>' + ((typeof statements[i].actor.mbox !== 'undefined') ? statements[i].actor.mbox.replace(/mailto:/g, '') : '') + '</td>');
             table.push('<td>' + (statements[i].actor.name || '') + '</td>');
-            table.push('<td>' + (/[^\/]+$/.exec(statements[i].verb.id)[0]) + '</td>');
+            table.push('<td>' + (utils.verb(statements[i].verb.id)) + '</td>');
             if (typeof statements[i].authority !== 'undefined') {
                 var authority = 'yes, but cannot identify';
                 authority = (statements[i].authority.name !== 'undefined') ? statements[i].authority.name : authority;
