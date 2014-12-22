@@ -13,7 +13,7 @@ var conf = {
 ADL.XAPIWrapper.changeConfig(conf);
 
 /*
- * ADL.XAPIWrapper.getStatements + callabck
+ * ADL.XAPIWrapper.getStatements + callback
  */
 var statements = [];//holds downloaded statements
 var count = 0; //coundts download iterations, for skipping long  `more` cycles
