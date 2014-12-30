@@ -172,7 +172,7 @@ var callback = function(data) {
 // Limit search to statements written in the past 30 days
 var search = ADL.XAPIWrapper.searchParams();//search params
 var since = new Date(Date.now());
-since = new Date(since.getFullYear(),since.getMonth(),since.getDate()-5);// past 5 days
+since = new Date(since.getFullYear(),since.getMonth(),since.getDate()-30);// past 30 days
 search['since'] = since.toISOString();
 
 // start search when DOM tree is loaded
