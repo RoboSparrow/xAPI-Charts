@@ -12,26 +12,38 @@
         <script src="./vendor/DataTables-1.10.2/media/js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./vendor/DataTables-1.10.2/media/css/jquery.dataTables.min.css">
         
-        <!-- Epoch -->
-        <script src="./vendor/d3/d3.min.js"></script>
-        <script src="./vendor/epoch.0.6.0/epoch.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./vendor/epoch.0.6.0/epoch.min.css">
-        
+        <!-- Chartist CDN -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
         <!-- xAPI + reports -->
         <script src="./app/utils.js"></script>
         <script src="./vendor/xAPIWrapper/xapiwrapper.min.js"></script>
-        <script src="./app/xapi-reports.epoch.js"></script>
+        <script src="./app/xapi-reports.chartist.js"></script>
+        
+        <!-- Custom styles -->
+        <style>
+        .ct-chart{
+            max-width: 45%;
+            float:left;
+        }
+        .label-rotate-45{    
+            -ms-transform: rotate(-45deg); /* IE 9 */
+            -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+            transform: rotate(-45deg);
+        }
+        </style>
     </head>
     <body>
         <h1>Example of xAPI statements report</h1>
         <ul>
-            <li><strong>Graphs: </strong><a href="http://fastly.github.io/epoch/">Epoch</a></li>
+            <li><strong>Graphs: </strong><a href="http://gionkunz.github.io/chartist-js/index.html">Chartist JS</a></li>
             <li><strong>Table: </strong><a href="http://www.datatables.net">DataTables</a> (jQuery)</li>
         </ul>
         <!-- Reports -->
         <pre id="Logger" style="background:#dedede;color:999999;padding:10px;margin-bottom:25px;"></pre>
-        <div id="BarChart" class="epoch category10"></div>
-        <div id="PieChart" class="epoch category10" style="width: 400px; height: 400px"></div>
-        <div id="DataTable"></div>
+        <div class="ct-chart bar-chart ct-perfect-fourth"></div>
+        <div class="ct-chart pie-chart ct-perfect-fourth"></div>
+        <div style="clear:both;" id="DataTable"></div>
     </body>
 </html>
