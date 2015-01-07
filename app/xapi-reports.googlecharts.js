@@ -68,12 +68,12 @@ var callback = function(data) {
          */
 
         // Build column chart data matrix
-        var columData = [
+        var columnData = [
             ['Verb', 'Entries', { role: 'style' }, {role: 'annotation'}]
         ];
 
         for (var verb in data) {
-            columData.push([
+            columnData.push([
                 utils.verb(verb),
                 data[verb].length,
                 'color:' + pastelColors() + ';opacity: 0.8;',
@@ -85,7 +85,7 @@ var callback = function(data) {
         var chart = new google.visualization.ColumnChart(document.getElementById('ColumnChart'));
 
         chart.draw(
-            google.visualization.arrayToDataTable(columData), {
+            google.visualization.arrayToDataTable(columnData), {
                 title: 'Statements',
                 hAxis: {
                     title: 'Verbs',
